@@ -37,6 +37,8 @@
     white-space: nowrap;
     width: 100%;
     font-size: 1.2em;
+    color: #283655;
+    font-weight: 600;
 }
 @keyframes marquee_keyframes {
     0%{

@@ -5,11 +5,14 @@
 }
 .App{
     width: 976px;
-    background-color: aquamarine;
     margin: 0 auto;
     height: 100vh;
 }
+.invisible{
+    display: none;
+}
 .header_container{
+    display: flex;
     background-color: #fff;
 }
 .logo_container{
@@ -40,14 +43,14 @@
     color: #283655;
     font-weight: 600;
 }
-@keyframes marquee_keyframes {
+/* @keyframes marquee_keyframes {
     0%{
         transform: translateX(100%);
     }
     100%{
         transform: translateX(-100%);
     }
-}
+} */
 @keyframes marquee_infinite {
     0%{
         transform: translateX(0%);

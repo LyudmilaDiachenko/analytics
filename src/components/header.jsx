@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import logo from "../assets/icon_logo.png"
 import Rate from "./rate"
-import Comparison from './comparison'
 
 export default function Header() {
   return (
@@ -11,7 +10,6 @@ export default function Header() {
         <p className='logo_txt'>Macro Analytics</p>
       </div>
       <Rate />
-      <Comparison />
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react'
+import Comparison from '../components/comparison'
 
 export default function Main() {
   return (
     <div>
-        11111111111
+      <Comparison />
     </div>
   )
 }

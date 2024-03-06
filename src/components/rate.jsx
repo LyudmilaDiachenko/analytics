@@ -11,29 +11,28 @@ export default function Rate() {
   const [eurSell, setEURSell] = useState()
 
   async function updateRates() {
-    const URL = `https://api.monobank.ua/bank/currency`
-    let data =  await (await fetch(URL)).json();
+    let data =  await (await fetch(`https://api.monobank.ua/bank/currency`)).json();
     if (Array.isArray(data)) {
-      setUSDBuy(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateBuy)
-      setEURBuy(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateBuy)
-      setUSDSell(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateSell)
-      setEURSell(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateSell)
+      setUSDBuy(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateBuy.toString().substr(0,5))
+      setEURBuy(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateBuy.toString().substr(0,5))
+      setUSDSell(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateSell.toString().substr(0,5))
+      setEURSell(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateSell.toString().substr(0,5))
       setDate(new Date().toTimeString().substr(0,5))
     }
   }
   useEffect(_ => {
     updateRates()
-    setTimeout(updateRates, 30000)
+    setTimeout(updateRates, 61000)
   }, [])
   return (
     usdBuy ? <div className='marquee_infinite'>
         <div className='marquee_container'>
           <p className='marquee_txt'>
-            {`Курс валют на ${date} USD купівля ${usdBuy} грн /продаж ${usdSell} грн`}
+            {`Курс валют на ${date} - USD ${usdBuy} / ${usdSell}, EUR ${eurBuy} / ${eurSell}`}
           </p> 
           <p className='marquee_txt'>
-            {`Курс валют на ${date} EUR купівля ${eurBuy} грн /продаж ${eurSell} грн`}
-          </p> 
+            {`Курс валют на ${date} - USD ${usdBuy} / ${usdSell}, EUR ${eurBuy} / ${eurSell}`}
+          </p>
         </div>
       </div> : <></>
   )

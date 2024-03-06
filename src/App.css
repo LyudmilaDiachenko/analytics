@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.App{
+    width: 976px;
+    background-color: aquamarine;
+    margin: 0 auto;
+    height: 100vh;
+}
+.header_container{
+    background-color: #fff;
+}
+.logo_container{
+    display: flex;
+    align-items: center;
+}
+.logo_img{
+    width: 7%;
+}
+.logo_txt{
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #344D90;
+}
+.marquee_infinite{
+    padding: 2% 0;
+    overflow: hidden;
+}
+.marquee_container{
+    display: flex;
+    width: 200%;
+    animation: marquee_infinite 15s linear infinite;
+}
+.marquee_txt{
+    white-space: nowrap;
+    width: 100%;
+    font-size: 1.2em;
+}
+@keyframes marquee_keyframes {
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+@keyframes marquee_infinite {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
+.marquee_container:hover{
+    animation-play-state: paused;
+}

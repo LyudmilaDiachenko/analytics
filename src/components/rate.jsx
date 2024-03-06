@@ -25,15 +25,14 @@ export default function Rate() {
     updateRates()
     setTimeout(updateRates, 30000)
   }, [])
-
   return (
     usdBuy ? <div className='marquee_infinite'>
         <div className='marquee_container'>
           <p className='marquee_txt'>
-            {`Курс валют на ${date} USD купівля ${usdBuy} грн / продаж ${usdSell} грн   EUR купівля ${eurBuy} грн / продаж ${eurSell} грн`}
+            {`Курс валют на ${date} USD купівля ${usdBuy} грн /продаж ${usdSell} грн`}
           </p> 
           <p className='marquee_txt'>
-            {`Курс валют на ${date} USD купівля ${usdBuy} грн / продаж ${usdSell} грн   EUR купівля ${eurBuy} грн / продаж ${eurSell} грн`}
+            {`Курс валют на ${date} EUR купівля ${eurBuy} грн /продаж ${eurSell} грн`}
           </p> 
         </div>
       </div> : <></>

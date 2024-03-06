@@ -27,6 +27,13 @@
     font-weight: 600;
     color: #344D90;
 }
+.footer{
+    text-align: right;
+}
+.footer img{
+    vertical-align: middle;
+    padding: 0 2px 0px 5px;
+}
 .marquee_infinite{
     padding: 2% 0;
     overflow: hidden;

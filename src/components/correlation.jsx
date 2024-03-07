@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { getColor } from '../utils/color'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 let years = Array(9).fill(new Date().getFullYear()-2).map((d, i) => d-i)
@@ -49,37 +50,45 @@ export default function Correlation() {
     async function getData() {
         let iData =  
             (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_cpi_&tzep=DTPY_&sort=value&order=desc&date=${year}0101`)).json())
-            .filter(e => e.ku == null && e.mcrd081 != 'Total');
-        let rData =  
-            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&tzep=DTDPY_&sort=value&order=desc&date=${year}0101`)).json())
-            .filter(e => e.mcrk110 != 'BCDE');
+            .filter(e => e.ku == null && e.mcrd081 != 'Total')
+            .sort(_ => Math.random() > 0.5 ? 1 : -1)
+            .map((e,i,a)=> { return {...e, ...{color: getColor(a.length, i)[0]}}})
+            .sort((a, b) => b.value - a.value);
         setDataCPI({
             labels: iData.map(e => CPI[e.mcrd081] || e.mcrd081),
             datasets: [
                 { 
                     label: iData[0]?.txt,
                     data: iData.map(e => e.value),
-                    borderRadius: "5", 
-                    backgroundColor: iData.map(_ => `rgb(
-                        ${Math.random() * 200 + 55}, 
-                        ${Math.random() * 200 + 55}, 
-                        ${Math.random() * 200 + 55}
-                    )`)
+                    borderRadius: "5",
+                    backgroundColor: iData.map(e => e.color)
+                    // backgroundColor: iData.map((_, i) => `rgb(
+                    //     ${Math.random() * 200 + 55}, 
+                    //     ${Math.random() * 200 + 55}, 
+                    //     ${Math.random() * 200 + 55}
+                    // )`)
                 }
             ]
         })
+        let rData =  
+            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&tzep=DTDPY_&sort=value&order=desc&date=${year}0101`)).json())
+            .filter(e => e.mcrk110 != 'BCDE')
+            .sort(_ => Math.random() > 0.5 ? 1 : -1)
+            .map((e,i,a)=> { return {...e, ...{color: getColor(a.length, i)[0]}}})
+            .sort((a, b) => b.value - a.value);
         setDataPPI({
             labels: rData.map(e => PPI[e.mcrk110] || e.mcrk110),
             datasets: [
                 { 
                     label: rData[0]?.txt,
                     data: rData.map(e => e.value),
-                    borderRadius: "5", 
-                    backgroundColor: rData.map(_ => `rgb(
-                        ${Math.random() * 200 + 55}, 
-                        ${Math.random() * 200 + 55}, 
-                        ${Math.random() * 200 + 55}
-                    )`)
+                    borderRadius: "5",
+                    backgroundColor: rData.map(e => e.color)
+                    // backgroundColor: rData.map(_ => `rgb(
+                    //     ${Math.random() * 200 + 55}, 
+                    //     ${Math.random() * 200 + 55}, 
+                    //     ${Math.random() * 200 + 55}
+                    // )`)
                 }
             ]
         }) 
@@ -88,7 +97,7 @@ export default function Correlation() {
 
     return (
         <div>
-            <div className='first_screen'>
+            <div className='first_screen' id='correlation'>
                 <h2 className='h2_first_screen'>Співвідношення товарних груп та видів діяльності</h2>
                 <div className='select_container'>
                     <select value={year} onChange={e => setYear(e.target.value)} className='year_select'>
@@ -99,8 +108,8 @@ export default function Correlation() {
                 </div>
             </div>  
             <div className='first_screen'>
-                <div className='w-50'>{dataCPI ? <Pie data={dataCPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90, display: true}}}} /> : <></>}</div>
-                <div className='w-50'>{dataPPI ? <Pie data={dataPPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90, display: true}}}} /> : <></>}</div>
+                <div className='w-50'>{dataCPI ? <Pie data={dataCPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90}}}} /> : <></>}</div>
+                <div className='w-50'>{dataPPI ? <Pie data={dataPPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90}}}} /> : <></>}</div>
             </div>
         </div>
     )

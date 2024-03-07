@@ -1,10 +1,14 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+function scrollTo(e){
+  e.preventDefault()
+  document.querySelector(e.target.dataset['url']).scrollIntoView({ behavior: "smooth" })
+}
 
 export default function Navigation() {
   return (
-    <div className='invisible'>
-      <NavLink to="/">Головна</NavLink>
+    <div className='navigation'>
+      <a onClick={e => scrollTo(e)} data-url='#comparison'>Індекс споживчих цін / цін виробників</a>
+      <a onClick={e => scrollTo(e)} data-url='#correlation'>Співвідношення товарних груп</a>
+      <a onClick={e => scrollTo(e)} data-url='#details'>Порівняння по регіонах</a>
     </div>
   )
 }

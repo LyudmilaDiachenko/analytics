@@ -17,6 +17,10 @@
     justify-content: center;
     padding: 1% 0 1% 0;
 }
+.footer{
+    text-align: right;
+    padding: 1% 0 1% 0;
+}
 .logo_container{
     display: flex;
     align-items: center;
@@ -27,9 +31,6 @@
 .logo_txt{
     color: #344D90;
     font-weight: 600;
-}
-.footer{
-    text-align: right;
 }
 .footer img{
     vertical-align: middle;
@@ -63,6 +64,7 @@
 }
 .first_screen{
     display: flex;
+    padding-top: 20px;
     justify-content: space-between;
     margin-bottom: 1%;
 }
@@ -87,4 +89,11 @@
 }
 .w-50{
     width: 50%;
+}
+.navigation{
+    position: fixed;
+    background-color: red;
+    height: 25px;
+    z-index: 999;
+    background: linear-gradient(white 70%, rgba(255,0,0,0));
 }

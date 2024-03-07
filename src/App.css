@@ -85,3 +85,6 @@
 .year_select:nth-child(even){
     margin-left: 10px;
 }
+.w-50{
+    width: 50%;
+}

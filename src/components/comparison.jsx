@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js"
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-let years = []
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+let years = Array(11).fill(new Date().getFullYear()).map((d, i) => d-i)
 
 export default function Comparison() {
     const [data, setData] = useState()
-    const [yearFrom, setYearFrom] = useState(new Date().getFullYear()-15)
+    const [yearFrom, setYearFrom] = useState(new Date().getFullYear()-10)
     const [yearTill, setYearTill] = useState(new Date().getFullYear())
 
-    async function getData(start = yearFrom, end = yearTill) {
+    async function getData() {
         let iData =  
-            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_cpi_&mcrd081=Total&sort=dt&order=asc&start=${start}0101&end=${end}1231`)).json())
-            .filter(e => e.ku == null && e.tzep == "DTPY_");
-        let rData =  
-            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&mcrd081=Total&sort=dt&order=asc&start=${start}0101&end=${end}1231`)).json())
-            .filter(e => e.mcrk110 == "BCDE" && e.tzep == "DTDPY_");
+            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_cpi_&mcrd081=Total&tzep=DTPY_&sort=dt&order=asc&start=${yearFrom}0101&end=${yearTill}1231`)).json())
+            .filter(e => e.ku == null);
+        let rData = (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&mcrd081=Total&mcrk110=BCDE&tzep=DTDPY_&sort=dt&order=asc&start=${yearFrom}0101&end=${yearTill}1231`)).json());
         setData({
             labels: iData.map(e => e.dt.substr(0,4)),
             datasets: [
                 { 
                     label: iData[0].txt,
                     data: iData.map(e => e.value),
-                    borderColor: "black", 
-                    borderRadius: "10", 
+                    borderRadius: "5", 
                     backgroundColor: iData.map(_ => `rgb(
                         ${Math.random() * 200 + 55}, 
                         ${Math.random() * 200 + 55}, 
@@ -34,8 +31,7 @@ export default function Comparison() {
                 { 
                     label: rData[0].txt,
                     data: rData.map(e => e.value),
-                    borderColor: "black", 
-                    borderRadius: "10",
+                    borderRadius: "5",
                     backgroundColor: iData.map(_ => `rgb(
                         ${Math.random() * 200 + 55}, 
                         ${Math.random() * 200 + 55}, 
@@ -45,31 +41,21 @@ export default function Comparison() {
             ]
         })    
     }
-    useEffect(_ => {
-        years = []
-        for (let i = new Date().getFullYear(); i >= new Date().getFullYear() - 15; i--){ 
-            years.push(i)
-        }
-        getData()
-    }, [])
+    useEffect(_ => { getData() }, [yearFrom, yearTill])
 
-    useEffect(_ => {
-        getData(yearFrom, yearTill)
-    }, [yearFrom, yearTill])
     return (
         <div>
             <div className='first_screen'>
-                <h2 className='h2_first_screen'>Співвідношення індексів інфляції</h2>
+                <h2 className='h2_first_screen'>Індекс споживчих цін та індекс цін виробників</h2>
                 <div className='select_container'>
-                    <select onChange={e => setYearFrom(e.target.value)} className='year_select'>
+                    <select value={yearFrom} onChange={e => setYearFrom(e.target.value)} className='year_select'>
                         {years.map(i => 
-                            <option value={i} key={'setYearFrom'+i} selected={yearFrom==i?'selected':false}>{i}</option>    
+                            <option value={i} key={'setYearFrom'+i}>{i}</option>    
                         )}
                     </select>
-                    <select onChange={e => setYearTill(e.target.value)} className='year_select'>
+                    <select value={yearTill} onChange={e => setYearTill(e.target.value)} className='year_select'>
                         {years.map(i => 
-                            <option value={i} key={'setYearTill'+i} selected={yearTill==i?'selected':false}
-                            >{i}</option>    
+                            <option value={i} key={'setYearTill'+i}>{i}</option>    
                         )}
                     </select>
                 </div>

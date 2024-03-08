@@ -9,6 +9,7 @@ export default function Navigation() {
       <a onClick={e => scrollTo(e)} data-url='#comparison'>Індекс споживчих цін / цін виробників</a>
       <a onClick={e => scrollTo(e)} data-url='#correlation'>Співвідношення товарних груп</a>
       <a onClick={e => scrollTo(e)} data-url='#details'>Порівняння по регіонах</a>
+      <a onClick={e => scrollTo(e)} data-url='#industrial'>Порівняння по регіонах</a>
     </div>
   )
 }

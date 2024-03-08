@@ -15,7 +15,8 @@ export default function Comparison() {
         let iData =  
             (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_cpi_&mcrd081=Total&tzep=DTPY_&sort=dt&order=asc&start=${yearFrom}0101&end=${yearTill}1231`)).json())
             .filter(e => e.ku == null);
-        let rData = (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&mcrd081=Total&mcrk110=BCDE&tzep=DTDPY_&sort=dt&order=asc&start=${yearFrom}0101&end=${yearTill}1231`)).json());
+        let rData = 
+            (await (await fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/inflation?period=y&json&id_api=prices_price_ppi_&mcrd081=Total&mcrk110=BCDE&tzep=DTDPY_&sort=dt&order=asc&start=${yearFrom}0101&end=${yearTill}1231`)).json());
         setData({
             labels: iData.map(e => e.dt.substr(0,4)),
             datasets: [

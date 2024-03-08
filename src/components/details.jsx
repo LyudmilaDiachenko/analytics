@@ -48,7 +48,7 @@ export default function Details() {
     const [dateTill, setDateTill] = useState('20220101')
 
     function pointRadius(ctx){
-        return Math.ceil(Math.sqrt(ctx.parsed.y));
+        return Math.ceil(Math.sqrt(ctx.parsed.y*3));
     }
 
     async function getData() {

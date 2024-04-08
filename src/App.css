@@ -15,11 +15,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1% 0 1% 0;
+    padding: 5% 0 0 0;
 }
 .footer{
-    text-align: right;
-    padding: 1% 0 1% 0;
+    padding: 2% 0 2% 0;
+    font-size: 1.1em;
+    color: #283655;
 }
 .logo_container{
     display: flex;
@@ -64,9 +65,8 @@
 }
 .first_screen{
     display: flex;
-    padding-top: 20px;
     justify-content: space-between;
-    margin-bottom: 1%;
+    margin: 2% 0 1%;
 }
 .select_container{
     display: flex;
@@ -91,9 +91,39 @@
     width: 50%;
 }
 .navigation{
+    width: 976px;
+    display: flex;
+    justify-content: space-between;
     position: fixed;
-    background-color: red;
-    height: 25px;
     z-index: 999;
     background: linear-gradient(white 70%, rgba(255,0,0,0));
+}
+.navigation a{
+    padding: 2% 0 3% 0;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.navigation a:hover{
+    color: #344D90;
+    text-decoration: underline;
+}
+.footer_text{
+    font-size: 1.1em;
+}
+.footer_link{
+    padding: 0 0.5%;
+    color: #283655;
+    font-weight: 600;
+}
+.logo_monobank{
+    border-radius: 50%;
+}
+.indent{
+    text-align: end;
+    margin-bottom: 2%;
+}
+.parag{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }

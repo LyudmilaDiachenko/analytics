@@ -13,10 +13,10 @@ export default function Rate() {
   async function updateRates() {
     let data =  await (await fetch(`https://api.monobank.ua/bank/currency`)).json();
     if (Array.isArray(data)) {
-      setUSDBuy(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateBuy.toString().substr(0,5))
-      setEURBuy(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateBuy.toString().substr(0,5))
-      setUSDSell(data?.find(a => a.currencyCodeA==USD_CURR && a.currencyCodeB==UAH_CURR).rateSell.toString().substr(0,5))
-      setEURSell(data?.find(a => a.currencyCodeA==EUR_CURR && a.currencyCodeB==UAH_CURR).rateSell.toString().substr(0,5))
+      setUSDBuy(data?.find(a => a.currencyCodeA===USD_CURR && a.currencyCodeB===UAH_CURR).rateBuy.toString().substr(0,5))
+      setEURBuy(data?.find(a => a.currencyCodeA===EUR_CURR && a.currencyCodeB===UAH_CURR).rateBuy.toString().substr(0,5))
+      setUSDSell(data?.find(a => a.currencyCodeA===USD_CURR && a.currencyCodeB===UAH_CURR).rateSell.toString().substr(0,5))
+      setEURSell(data?.find(a => a.currencyCodeA===EUR_CURR && a.currencyCodeB===UAH_CURR).rateSell.toString().substr(0,5))
       setDate(new Date().toTimeString().substr(0,5))
     }
   }

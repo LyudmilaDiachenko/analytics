@@ -26,11 +26,6 @@ export default function Comparison() {
                     borderRadius: "5", 
                     backgroundColor: iData.map((_, i) => getColor(iData.length, i)[0])
                         .sort(_=>Math.random() > 0.5 ? 1 : -1)
-                    // backgroundColor: iData.map(_ => `rgb(
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}
-                    // )`)
                 },
                 { 
                     label: rData[0].txt,
@@ -38,11 +33,6 @@ export default function Comparison() {
                     borderRadius: "5",
                     backgroundColor: rData.map((_, i) => getColor(rData.length, i)[0])
                         .sort(_=>Math.random()>0.5?1:-1)
-                    // backgroundColor: rData.map(_ => `rgb(
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}
-                    // )`)
                 }
             ]
         })    
@@ -52,7 +42,9 @@ export default function Comparison() {
     return (
         <div>
             <div className='first_screen' id='comparison'>
-                <h2 className='h2_first_screen'>Індекс споживчих цін та індекс цін виробників</h2>
+                <h2 className='h2_first_screen'>
+                    {window.outerWidth > 765 ? 'Індекс споживчих цін та індекс цін виробників' : 'ІСЦ / ІЦВ'}
+                </h2>
                 <div className='select_container'>
                     <select value={yearFrom} onChange={e => setYearFrom(e.target.value)} className='year_select'>
                         {years.map(i => 

@@ -98,7 +98,9 @@ export default function Correlation() {
     return (
         <div>
             <div className='first_screen' id='correlation'>
-                <h2 className='h2_first_screen'>Співвідношення товарних груп та видів діяльності</h2>
+                <h2 className='h2_first_screen'>
+                {window.outerWidth > 765 ? 'Співвідношення товарних груп та видів діяльності' : 'Товарні групи / видів діяльності'}
+                </h2>
                 <div className='select_container'>
                     <select value={year} onChange={e => setYear(e.target.value)} className='year_select'>
                         {years.map(i => 

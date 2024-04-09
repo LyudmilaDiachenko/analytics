@@ -75,7 +75,9 @@ export default function Details() {
     return (
         <div>
             <div className='first_screen' id='details'>
-                <h2 className='h2_first_screen'>Індекс споживчих цін по регіонах</h2>
+                <h2 className='h2_first_screen'>
+                {window.outerWidth > 765 ? 'Індекс споживчих цін по регіонах' : 'ІСЦ по регіонах'}
+                </h2>
                 <div className='select_container'>
                     <input type='date' value={dateFrom.replace(/(.{4})(.{2})(.{2})/, '$1-$2-$3')} onChange={e => setDateFrom(e.target.value.replaceAll('-', ''))} className='year_select' />
                     <input type='date' value={dateTill.replace(/(.{4})(.{2})(.{2})/, '$1-$2-$3')} onChange={e => setDateTill(e.target.value.replaceAll('-', ''))} className='year_select' />

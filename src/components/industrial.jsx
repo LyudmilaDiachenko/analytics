@@ -90,7 +90,9 @@ export default function Industrial() {
   return (
     <div>
       <div className='first_screen' id='industrial'>
-          <h2 className='h2_first_screen'>Індекс споживчих цін та індекс цін виробників</h2>
+          <h2 className='h2_first_screen'>
+          {window.outerWidth > 765 ? 'Індекс споживчих цін та індекс цін виробників' : 'ІСЦ / ІЦВ по регіонах'}
+          </h2>
           <div className='select_container'>
               <select value={yearFrom} onChange={e => setYearFrom(e.target.value)} className='year_select'>
                   {years.map(i => 
@@ -105,11 +107,11 @@ export default function Industrial() {
           </div>
       </div>  
       <Table dataSource={data} columns={[
-        {title: 'Категорія',  dataIndex: 'caption',   key: 'caption',   sorter: (a, b) => a.caption > b.caption ? 1 : -1},
+        {title: 'Назва',  dataIndex: 'caption',   key: 'caption',   sorter: (a, b) => a.caption > b.caption ? 1 : -1},
         {title: 'Регіон',     dataIndex: 'region',    key: 'region',    sorter: (a, b) => a.region > b.region ? 1 : -1},
         {title: 'Рік',        dataIndex: 'year',      key: 'year',      sorter: (a, b) => a.year - b.year}, 
-        {title: 'Показник',   dataIndex: 'value',     key: 'value',     sorter: (a, b) => a.value - b.value, align: 'right'},
-      ]} />
+        {title: '%',   dataIndex: 'value',     key: 'value',     sorter: (a, b) => a.value - b.value, align: 'right'},
+      ]} size="small" />
     </div>
   )
 }

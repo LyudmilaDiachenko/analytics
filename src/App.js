@@ -9,13 +9,16 @@ function App() {
   return (
     <AppProvider>
       <div className="App">
-        <Router>
+        {/* <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Main />} />        
             </Route>
           </Routes>
-        </Router>
+        </Router> */}
+        <Layout>
+          <Main />
+        </Layout>
       </div>
     </AppProvider>    
   );

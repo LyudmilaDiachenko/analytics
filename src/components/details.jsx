@@ -83,7 +83,7 @@ export default function Details() {
                     <input type='date' value={dateTill.replace(/(.{4})(.{2})(.{2})/, '$1-$2-$3')} onChange={e => setDateTill(e.target.value.replaceAll('-', ''))} className='year_select' />
                 </div>
             </div>  
-            {data ? <Line data={data} options={{ elements: {point: {radius: pointRadius, hoverRadius: c=>pointRadius(c) + 3}}}}  ref={r => chart=r} /> : <></>}
+            {data ? <Line data={data} options={{ elements: {point: {radius: pointRadius, hoverRadius: c=>pointRadius(c) + 3}}, plugins: {legend: {display: window.outerWidth > 765}}}}  ref={r => chart=r} /> : <></>}
         </div>
     )
 }

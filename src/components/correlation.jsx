@@ -62,11 +62,6 @@ export default function Correlation() {
                     data: iData.map(e => e.value),
                     borderRadius: "5",
                     backgroundColor: iData.map(e => e.color)
-                    // backgroundColor: iData.map((_, i) => `rgb(
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}
-                    // )`)
                 }
             ]
         })
@@ -84,22 +79,18 @@ export default function Correlation() {
                     data: rData.map(e => e.value),
                     borderRadius: "5",
                     backgroundColor: rData.map(e => e.color)
-                    // backgroundColor: rData.map(_ => `rgb(
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}, 
-                    //     ${Math.random() * 200 + 55}
-                    // )`)
                 }
             ]
         }) 
     }
     useEffect(_ => { getData() }, [year])
+    window.onresize = _=> getData()
 
     return (
-        <div>
-            <div className='first_screen' id='correlation'>
+        <div id='correlation'>
+            <div className='first_screen'>
                 <h2 className='h2_first_screen'>
-                {window.outerWidth > 765 ? 'Співвідношення товарних груп та видів діяльності' : 'Товарні групи / видів діяльності'}
+                {window.outerWidth > 765 ? 'Співвідношення товарних груп та видів діяльності' : 'Товарні групи/видів діяльності'}
                 </h2>
                 <div className='select_container'>
                     <select value={year} onChange={e => setYear(e.target.value)} className='year_select'>
@@ -110,8 +101,12 @@ export default function Correlation() {
                 </div>
             </div>  
             <div className='first_screen'>
-                <div className='w-50'>{dataCPI ? <Pie data={dataCPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90}}}} /> : <></>}</div>
-                <div className='w-50'>{dataPPI ? <Pie data={dataPPI} options={{radius: '95%', plugins: {legend: {position: 'bottom', maxHeight: 90}}}} /> : <></>}</div>
+                <div className='w-50'>
+                    {dataCPI ? <Pie data={dataCPI} options={{radius: '95%', plugins: {legend: {display: window.outerWidth > 765, position: 'bottom', maxHeight: 90}}}} /> : <></>}
+                </div>
+                <div className='w-50'>
+                    {dataPPI ? <Pie data={dataPPI} options={{radius: '95%', plugins: {legend: {display: window.outerWidth > 765, position: 'bottom', maxHeight: 90}}}} /> : <></>}
+                </div>
             </div>
         </div>
     )

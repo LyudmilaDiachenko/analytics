@@ -40,8 +40,8 @@ export default function Comparison() {
     useEffect(_ => { getData() }, [yearFrom, yearTill])
 
     return (
-        <div>
-            <div className='first_screen' id='comparison'>
+        <div id='comparison'>
+            <div className='first_screen'>
                 <h2 className='h2_first_screen'>
                     {window.outerWidth > 765 ? 'Індекс споживчих цін та індекс цін виробників' : 'ІСЦ / ІЦВ'}
                 </h2>

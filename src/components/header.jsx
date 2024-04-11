@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from "../assets/icon_logotype.png"
 import Rate from "./rate"
 import logoType from "../assets/icons8-results-100.png"
+
 export default function Header() {
   return (
     <div className='header_container'>

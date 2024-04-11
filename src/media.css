@@ -60,14 +60,9 @@
         margin: 0 auto;
     }
     .navigation {
-        width: 87%;
+        max-width: 88%;
         margin: 0 auto;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-        flex-direction: column;
-        align-items: flex-end;
-        padding-top: 20px;
+        padding-top: 15px;
         position: fixed;
         z-index: 9999;
         background: linear-gradient(white 85%, rgba(255, 0, 0, 0));
@@ -76,7 +71,7 @@
         padding: 1% 0 1% 0;
     }
     .header_container {
-        padding: 38% 0 0 0;
+        padding: 20% 0 0 0;
     }
     .first_screen {
         display: flex;

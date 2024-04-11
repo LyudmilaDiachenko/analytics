@@ -88,8 +88,8 @@ export default function Industrial() {
     useEffect(_ => { getData() }, [yearFrom, yearTill])
 
   return (
-    <div>
-      <div className='first_screen' id='industrial'>
+    <div id='industrial'>
+      <div className='first_screen'>
           <h2 className='h2_first_screen'>
           {window.outerWidth > 765 ? 'Індекс споживчих цін та індекс цін виробників' : 'ІСЦ / ІЦВ по регіонах'}
           </h2>

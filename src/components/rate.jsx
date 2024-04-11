@@ -22,7 +22,7 @@ export default function Rate() {
   }
   useEffect(_ => {
     updateRates()
-    setTimeout(updateRates, 61000)
+    setInterval(updateRates, 3000)
   }, [])
   return (
     usdBuy ? <div className='marquee_infinite'>
